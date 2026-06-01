@@ -104,6 +104,11 @@
                 </TableView>
                 <HBox alignment="CENTER_RIGHT" prefHeight="50.0" spacing="10.0">
                     <children>
+                        <Button fx:id="btnUpdate" mnemonicParsing="false" style="-fx-background-color: #ffcc00; -fx-text-fill: black; -fx-cursor: hand;" text="ATUALIZAR SELECIONADO">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
                         <Button fx:id="btnDelete" mnemonicParsing="false" style="-fx-background-color: #ff5555; -fx-text-fill: white; -fx-cursor: hand;" text="EXCLUIR SELECIONADO">
                             <font>
                                 <Font name="System Bold" size="12.0" />
