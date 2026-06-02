@@ -1,28 +1,26 @@
 package com.template;
 
 import java.sql.Connection;    // Objeto que mantém a conexão aberta com o banco
-import java.sql.DriverManager; // Gerenciador que faz a ligação usando a URL e a senha
+import java.sql.DriverManager; // Gerenciador que faz a ligação
 import java.sql.SQLException;
 
 public class ConexaoBD {
 
+    // Boas práticas: Usar constantes (static final) e separar as credenciais da URL
+    private static final String URL = "jdbc:postgresql://localhost:5432/DB_linguagenscrud";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "postgres";
+
     // Método responsável por abrir a porta do PostgreSQL
     public Connection conectarBD() {
-        Connection conn = null;
-
         try {
-
-            String url = "jdbc:postgresql://localhost:5432/DB_linguagenscrud?user=postgres&password=postgres";
-
-            // Realiza a conexão oficial usando os dados da URL acima
-            conn = DriverManager.getConnection(url);
+            // Tenta conectar usando os dados separados e já devolve a conexão direto
+            return DriverManager.getConnection(URL, USER, PASSWORD);
 
         } catch (SQLException e) {
-            // Se der erro (ex: banco desligado, senha ou nome errado), mostra no console
-            System.out.println("Erro ao conectar com o banco de dados: " + e.getMessage());
+            // Lançar a exceção é melhor do que retornar null.
+            // Se o banco não conectar, o programa deve falhar e avisar o motivo exato.
+            throw new RuntimeException("Erro fatal ao conectar com o banco de dados: " + e.getMessage(), e);
         }
-
-        // Devolve a conexão pronta (ou nula, se falhou) para o DAO usar
-        return conn;
     }
 }
