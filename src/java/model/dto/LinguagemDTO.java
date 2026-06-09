@@ -1,4 +1,4 @@
-package com.template;
+package model.dto;
 
 // DTO (Data Transfer Object) - É a nossa "caixa de transporte".
 // Serve apenas para guardar os dados e levá-los da tela para o banco
@@ -26,15 +26,17 @@ public class LinguagemDTO {
     // === GETTERS e SETTERS ===
 
     public int getId() {
+
         return id;
     }
 
     public void setId(int id) {
+
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNome(){
+    return nome;
     }
 
     public void setNome(String nome) {
@@ -42,6 +44,7 @@ public class LinguagemDTO {
     }
 
     public String getCriador() {
+
         return criador;
     }
 

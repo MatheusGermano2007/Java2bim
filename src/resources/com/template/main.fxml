@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.template.MainController">
+<BorderPane stylesheets="@style.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.template.MainController">
 
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="900.0" spacing="20.0" style="-fx-background-color: #000000; -fx-border-color: #deff9a; -fx-border-width: 0 0 1 0;" BorderPane.alignment="CENTER">
@@ -24,7 +24,7 @@
                 </Label>
                 <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                     <children>
-                        <TextField fx:id="txtSearch" prefHeight="30.0" prefWidth="250.0" promptText="Pesquisar linguagem..." style="-fx-background-color: #2a2a2a; -fx-text-fill: white; -fx-border-color: #444; -fx-border-radius: 5;" />
+                        <TextField fx:id="txtSearch" prefHeight="30.0" prefWidth="250.0" promptText="Pesquisar linguagem..." styleClass="text-field" />
                     </children>
                 </HBox>
             </children>
@@ -45,40 +45,36 @@
 
                 <VBox spacing="5.0">
                     <children>
-                        <Label text="Nome" textFill="#daffde" />
-                        <TextField fx:id="txtNome" promptText="Ex: Java, Python..." style="-fx-background-color: #2a2a2a; -fx-text-fill: white; -fx-border-color: #444;" />
+                        <Label text="Nome *" textFill="#daffde" />
+                        <TextField fx:id="txtNome" promptText="Ex: Java, Python..." styleClass="text-field" />
                     </children>
                 </VBox>
 
                 <VBox spacing="5.0">
                     <children>
-                        <Label text="Criador" textFill="#daffde" />
-                        <TextField fx:id="txtCriador" promptText="Ex: James Gosling..." style="-fx-background-color: #2a2a2a; -fx-text-fill: white; -fx-border-color: #444;" />
+                        <Label text="Criador *" textFill="#daffde" />
+                        <TextField fx:id="txtCriador" promptText="Ex: James Gosling..." styleClass="text-field" />
                     </children>
                 </VBox>
 
                 <VBox spacing="5.0">
                     <children>
                         <Label text="Tipo" textFill="#daffde" />
-                        <ComboBox fx:id="comboTipo" maxWidth="1.7976931348623157E308" promptText="Selecione o tipo..." style="-fx-background-color: #2a2a2a; -fx-border-color: #444;" />
+                        <ComboBox fx:id="comboTipo" maxWidth="1.7976931348623157E308" promptText="Selecione o tipo..." styleClass="combo-box" />
                     </children>
                 </VBox>
 
                 <VBox spacing="5.0">
                     <children>
                         <Label text="Ano Criação" textFill="#daffde" />
-                        <TextField fx:id="txtAno" promptText="Ex: 1995" style="-fx-background-color: #2a2a2a; -fx-text-fill: white; -fx-border-color: #444;" />
+                        <TextField fx:id="txtAno" promptText="Ex: 1995" styleClass="text-field" />
                     </children>
                 </VBox>
 
                 <VBox alignment="BOTTOM_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <Button fx:id="btnSave" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #deff9a; -fx-text-fill: black; -fx-cursor: hand;" text="SALVAR">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="btnClear" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-cursor: hand;" text="LIMPAR" />
+                        <Button fx:id="btnSave" onAction="#acaoSalvar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-salvar" text="SALVAR" />
+                        <Button fx:id="btnClear" onAction="#limparCampos" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="btn-limpar" text="LIMPAR" />
                     </children>
                 </VBox>
             </children>
@@ -91,7 +87,7 @@
     <center>
         <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
             <children>
-                <TableView fx:id="tableView" prefHeight="450.0" prefWidth="560.0" style="-fx-background-color: #222; -fx-border-color: #333;" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tableView" prefHeight="450.0" prefWidth="560.0" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colNome" prefWidth="150.0" text="Nome" />
                         <TableColumn fx:id="colCriador" prefWidth="180.0" text="Criador" />
@@ -104,16 +100,8 @@
                 </TableView>
                 <HBox alignment="CENTER_RIGHT" prefHeight="50.0" spacing="10.0">
                     <children>
-                        <Button fx:id="btnUpdate" mnemonicParsing="false" style="-fx-background-color: #ffcc00; -fx-text-fill: black; -fx-cursor: hand;" text="ATUALIZAR SELECIONADO">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="btnDelete" mnemonicParsing="false" style="-fx-background-color: #ff5555; -fx-text-fill: white; -fx-cursor: hand;" text="EXCLUIR SELECIONADO">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
-                            </font>
-                        </Button>
+                        <Button fx:id="btnUpdate" onAction="#acaoAtualizar" mnemonicParsing="false" styleClass="btn-atualizar" text="ATUALIZAR SELECIONADO" />
+                        <Button fx:id="btnDelete" onAction="#acaoExcluir" mnemonicParsing="false" styleClass="btn-excluir" text="EXCLUIR SELECIONADO" />
                     </children>
                 </HBox>
             </children>
@@ -126,9 +114,9 @@
     <bottom>
         <HBox alignment="CENTER_LEFT" prefHeight="30.0" style="-fx-background-color: #000; -fx-border-color: #333; -fx-border-width: 1 0 0 0;" BorderPane.alignment="CENTER">
             <children>
-                <Label text="Sistema pronto." textFill="#888">
+                <Label fx:id="lblMensagem" text="Sistema pronto." textFill="#888">
                     <font>
-                        <Font size="11.0" />
+                        <Font size="12.0" />
                     </font>
                 </Label>
             </children>
